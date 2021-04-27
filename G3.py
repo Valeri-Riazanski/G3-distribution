@@ -8,9 +8,10 @@ from scipy.stats import weibull_min
 from emp import r_norm, r_g3s, r_g3, g3, g3s, r_weibull, r_gamma
 
 
-file_name = 'data/empiric_fun.csv'
-# file_name = 'data/select.csv'
+# file_name = 'data/loss.csv'
+file_name = 'data/select.csv'
 # file_name = 'data/voltage.csv'
+# file_name = 'data/capture.csv'
 dataset = read_csv(file_name)
 array = dataset.values
 x = []
@@ -18,13 +19,13 @@ femp = []
 for i in range(len(array[:, 0])):
     x.append(array[i, 0])
     femp.append(array[i, 1])
-x0 = np.array([0.0, 1.0])
+x0 = np.array([1.3, 1.0])
 res_norm = minimize(r_norm, x0, method='Nelder-Mead')
 print('norm_CDF', res_norm)
 
 plt.plot(x, femp)
 plt.ylim([0, 1.1])
-plt.xlim([x[0] - 0.1, x[-1] + 0.1])
+plt.xlim([x[0] - 0.1 * x[0], x[-1] + 0.1 * x[-1]])
 y1 = stats.norm.cdf(x, loc=res_norm.x[0], scale=res_norm.x[1])
 plt.plot(x, y1)
 
@@ -38,7 +39,7 @@ t = [res_g3s.x[0], res_g3s.x[1], res_g3s.x[2]]
 plt.plot(x, g3s(t))
 
 
-x0 = np.array([3, 1])
+x0 = np.array([2, 3])
 res_weibull = minimize(r_weibull, x0, method='Nelder-Mead')
 print('weibull_CdF', res_weibull)
 t = [res_weibull.x[0], res_weibull.x[1]]
