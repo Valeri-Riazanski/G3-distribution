@@ -7,7 +7,7 @@ from scipy.stats import weibull_min
 def r_norm(t):
     a = t[0]
     s = t[1]
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -27,7 +27,7 @@ def r_g3(t):
     k = t[0]
     n = t[1]
     teta = t[2]
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -48,7 +48,7 @@ def g3(t):
     k = t[0]
     n = t[1]
     teta = t[2]
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -63,7 +63,7 @@ def r_g3s(t):
     k = t[0]
     m = t[1]
     alfa = (t[2] * math.sqrt(2)) ** (1 / k)
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -102,7 +102,7 @@ def g3s(t):
     k = t[0]
     m = t[1]
     alfa = (t[2] * math.sqrt(2)) ** (1 / k)
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -135,7 +135,7 @@ def g3s(t):
 def r_weibull(t):
     a = t[0]
     b = t[1]
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -154,7 +154,7 @@ def r_weibull(t):
 def r_gamma(t):
     k = t[0]
     alfa = t[1]
-    file_name = 'data/select.csv'
+    file_name = 'data/voltage.csv'
     dataset = read_csv(file_name)
     array = dataset.values
     x = []
@@ -166,5 +166,5 @@ def r_gamma(t):
     y = stats.gamma.cdf(x, a=k, loc=0, scale=alfa)
     summa = 0.0
     for i in range(num):
-        summa += abs(femp[i] - y[i])
+        summa += (abs(femp[i] - y[i]))
     return summa / num * 100
